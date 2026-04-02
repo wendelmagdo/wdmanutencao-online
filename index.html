@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WD Manutenção | Sistemas de Exaustão</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #0056b3;
+            --dark-blue: #002d5a;
+            --accent-blue: #007bff;
+            --white: #ffffff;
+            --gray-light: #f8f9fa;
+            --text-dark: #2d3436;
+            --text-muted: #636e72;
+            --whatsapp-green: #25d366;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', 'Segoe UI', sans-serif; }
+        html { scroll-behavior: smooth; }
+        body { line-height: 1.6; color: var(--text-dark); background-color: var(--white); overflow-x: hidden; }
+
+        /* Header Moderno */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 0.8rem 8%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container { display: flex; align-items: center; }
+        .logo-text { 
+            font-weight: 800; 
+            font-size: 1.6rem; 
+            color: var(--primary-blue); 
+            text-transform: uppercase; 
+            letter-spacing: -1px;
+            line-height: 1;
+        }
+        .logo-sub { 
+            display: block; 
+            font-size: 0.75rem; 
+            color: var(--text-muted); 
+            font-weight: 500; 
+            text-transform: uppercase; 
+            letter-spacing: 2px;
+            margin-top: 4px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            margin-left: 2rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            position: relative;
+        }
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0; height: 2px;
+            bottom: -5px; left: 0;
+            background: var(--primary-blue);
+            transition: var(--transition);
+        }
+        nav a:hover { color: var(--primary-blue); }
+        nav a:hover::after { width: 100%; }
+
+        /* Hero Section */
+        .hero {
+            height: 90vh;
+            background: linear-gradient(135deg, rgba(0, 45, 90, 0.85) 0%, rgba(0, 86, 179, 0.7) 100%),
+                        url('back.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 10%;
+        }
+
+        .hero h1 { 
+            font-size: clamp(2.5rem, 5vw, 4rem); 
+            margin-bottom: 1.5rem; 
+            font-weight: 900;
+            letter-spacing: -1px;
+            text-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        .hero p { 
+            font-size: clamp(1rem, 2vw, 1.25rem); 
+            margin-bottom: 3rem; 
+            max-width: 650px; 
+            opacity: 0.95;
+            font-weight: 400;
+        }
+
+        .cta-button {
+            background: var(--white);
+            color: var(--primary-blue);
+            padding: 18px 45px;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            border-radius: 8px;
+            transition: var(--transition);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            letter-spacing: 1px;
+        }
+        .cta-button:hover { 
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+            background: var(--gray-light);
+        }
+
+        /* Destaques (Floating Bar) */
+        .highlights {
+            background: var(--white);
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            padding: 40px 5%;
+            width: 80%;
+            margin: -60px auto 0;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 10;
+        }
+        .highlight-item { border-right: 1px solid #eee; text-align: center; padding: 10px; }
+        .highlight-item:last-child { border: none; }
+        .highlight-item h4 { font-size: 1.8rem; color: var(--primary-blue); font-weight: 800; }
+        .highlight-item p { font-size: 0.8rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase; }
+
+        /* Serviços */
+        section { padding: 120px 10%; }
+        .section-title { text-align: center; margin-bottom: 70px; }
+        .section-title h2 { font-size: 2.5rem; color: var(--dark-blue); font-weight: 800; }
+        .section-title div { width: 60px; height: 4px; background: var(--accent-blue); margin: 20px auto; border-radius: 2px; }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+        .service-card {
+            background: var(--white);
+            padding: 50px 40px;
+            border-radius: 20px;
+            transition: var(--transition);
+            border: 1px solid #f0f0f0;
+            position: relative;
+            overflow: hidden;
+        }
+        .service-card:hover {
+            border-color: var(--primary-blue);
+            transform: translateY(-12px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.08);
+        }
+        .service-card i { 
+            font-size: 3rem; 
+            background: linear-gradient(45deg, var(--primary-blue), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 25px; 
+        }
+        .service-card h3 { margin-bottom: 15px; font-size: 1.4rem; color: var(--dark-blue); }
+        .service-card p { color: var(--text-muted); font-size: 1rem; }
+
+        /* Sobre */
+        .about-section { background: var(--gray-light); }
+        .about-content { max-width: 900px; margin: 0 auto; line-height: 1.8; font-size: 1.15rem; color: #444; }
+
+        /* Footer */
+        footer { 
+            background: #0f172a; 
+            color: #f8fafc; 
+            padding: 80px 10% 40px; 
+            text-align: center; 
+        }
+        footer h3 { font-size: 1.5rem; margin-bottom: 20px; color: var(--white); }
+        .footer-info { margin-top: 40px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.85rem; color: #94a3b8; }
+        
+        /* WhatsApp Float */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 35px;
+            right: 35px;
+            background: var(--whatsapp-green);
+            color: white;
+            width: 65px; height: 65px;
+            border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            font-size: 30px;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+            z-index: 2000;
+            transition: var(--transition);
+        }
+        .whatsapp-float:hover { transform: scale(1.1) rotate(10deg); }
+
+        @media (max-width: 768px) {
+            header { padding: 1rem 5%; }
+            nav { display: none; }
+            .highlights { grid-template-columns: 1fr; width: 90%; margin-top: -40px; gap: 20px; }
+            .highlight-item { border-right: none; border-bottom: 1px solid #eee; padding-bottom: 15px; }
+            .hero h1 { font-size: 2.2rem; }
+            section { padding: 80px 5%; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo-container">
+        <div class="logo-text">WD <span style="font-weight: 300;">MANUTENÇÃO</span>
+            <span class="logo-sub">Sistema de exaustão</span>
+        </div>
+    </div>
+    <nav>
+        <a href="#inicio">Início</a>
+        <a href="#servicos">Serviços</a>
+        <a href="#contato">Orçamento</a>
+    </nav>
+</header>
+
+<section class="hero" id="inicio">
+    <h1>Excelência em Exaustão</h1>
+    <p>Manutenção preventiva e corretiva para sistemas industriais e comerciais com foco em segurança e performance.</p>
+    <a href="https://wa.me/5531991231874?text=Olá! Gostaria de solicitar um orçamento para manutenção de exaustão." class="cta-button">Solicitar Orçamento Grátis</a>
+</section>
+
+<section class="highlights">
+    <div class="highlight-item">
+        <h4>NBR 14518</h4>
+        <p>Normas de Segurança</p>
+    </div>
+    <div class="highlight-item">
+        <h4>BH e Região</h4>
+        <p>Atendimento Imediato</p>
+    </div>
+    <div class="highlight-item">
+        <h4>Profissional</h4>
+        <p>Equipe Qualificada</p>
+    </div>
+</section>
+
+<section id="servicos">
+    <div class="section-title">
+        <h2>Nossos Serviços</h2>
+        <div></div>
+    </div>
+    <div class="services-grid">
+        <div class="service-card">
+            <i class="fas fa-fan"></i>
+            <h3>Limpeza de Coifas</h3>
+            <p>Remoção de gordura em cozinhas profissionais seguindo rigorosos padrões de higiene e segurança contra incêndios.</p>
+        </div>
+        <div class="service-card">
+            <i class="fas fa-tools"></i>
+            <h3>Manutenção de Motores</h3>
+            <p>Reparo especializado em motores de exaustão, troca de correias, rolamentos e balanceamento de hélices.</p>
+        </div>
+        <div class="service-card">
+            <i class="fas fa-shield-alt"></i>
+            <h3>Instalação Técnica</h3>
+            <p>Montagem de sistemas completos de exaustão e ventilação mecânica para indústrias e restaurantes.</p>
+        </div>
+    </div>
+</section>
+
+<section id="sobre" class="about-section">
+    <div class="section-title">
+        <h2>Por que a WD Manutenção?</h2>
+        <div></div>
+    </div>
+    <div class="about-content">
+        <p style="text-align: center;">
+            A WD Manutenção é especializada na instalação e manutenção de sistemas de exaustão, atendendo cozinhas comerciais e industriais com eficiência e segurança. Atuamos com coifas, dutos e motores, garantindo o correto funcionamento dos equipamentos e a prevenção de riscos como incêndios e acúmulo de gordura.
+            <br><br>
+            Oferecemos soluções completas, desde a montagem de sistemas até serviços de limpeza e manutenção, sempre com foco na durabilidade dos equipamentos e na segurança do ambiente.
+        </p>
+    </div>
+</section>
+
+<footer id="contato">
+    <h3>WD Manutenção | Sistemas de Exaustão Profissionais</h3>
+    <p style="margin-bottom: 15px;">
+        <i class="fas fa-map-marker-alt" style="color: var(--accent-blue);"></i> Belo Horizonte - MG &nbsp; | &nbsp; 
+        <i class="fas fa-phone" style="color: var(--accent-blue);"></i> (31) 99123-1874
+    </p>
+    <p>
+        <i class="fab fa-instagram" style="color: #E1306C;"></i> 
+        <a href="https://www.instagram.com/wd_manutencao.exaustao/" target="_blank" style="color: #cbd5e1; text-decoration: none;">
+            @wd_manutencao.exaustao
+        </a>
+    </p>
+    <div class="footer-info">
+        CNPJ: 31.406.557/0001-50 <br><br>
+        © 2026 WD Manutenção. Todos os direitos reservados.
+    </div>
+</footer>
+
+<a href="https://wa.me/5531991231874?text=Olá,%20vi%20o%20site%20e%20gostaria%20de%20mais%20informações." class="whatsapp-float" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+</body>
+</html>
